@@ -255,6 +255,10 @@ export const GameCanvas = () => {
     };
   }, [isPlaying, isPaused]);
 
+  const handleMobileInput = useCallback((direction: 'left' | 'right', active: boolean) => {
+      gameState.current.keys[direction] = active;
+  }, []);
+
   if (!isClient) return <div className="bg-slate-900 w-full h-full" />;
 
   return (
@@ -273,9 +277,7 @@ export const GameCanvas = () => {
         <div className="absolute inset-0 bg-[url('/bg-stars.png')] opacity-50" /> 
         <div className="absolute inset-0 bg-gradient-to-t from-purple-900/10 via-transparent to-blue-900/5 pointer-events-none" />
         
-        <MobileControls onInput={useCallback((direction, active) => {
-             gameState.current.keys[direction] = active;
-        }, [])} />
+        <MobileControls onInput={handleMobileInput} />
         
         <Stage 
             width={dimensions.width} 
