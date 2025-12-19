@@ -249,6 +249,7 @@ export const GameCanvas = () => {
             width={dimensions.width} 
             height={dimensions.height}
             startDragDistance={0}
+            onContentTouchStart={handleInput}
             onContentTouchMove={handleInput}
             onContentMouseMove={handleInput}
         >
