@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0f172a;
+  --foreground: #f8fafc;
+  
+  /* Brand Colors - Electric Blue & Neon Pink/Purple for a "Cyber Arcade" feel */
+  --primary: #3b82f6; 
+  --primary-glow: rgba(59, 130, 246, 0.5);
+  
+  --secondary: #d946ef;
+  --secondary-glow: rgba(217, 70, 239, 0.5);
+
+  --accent: #f59e0b; /* Gold for Gems */
+  
+  --card: #1e293b;
+  --card-foreground: #f1f5f9;
+}
+
+@layer base {
+  body {
+    /* bg-slate-900 and text-slate-50 moved to layout.tsx to avoid @apply issues */
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    /* @apply is supported but safer to just rely on classes or standard css if simple */
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+}
+
+@layer components {
+  /* Glassmorphism utilities */
+  .glass {
+    @apply bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl;
+  }
+  
+  .glass-card {
+    @apply bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl rounded-2xl p-6 transition-all duration-200 hover:bg-white/15;
+  }
+
+  /* Neon Text */
+  .text-glow {
+    text-shadow: 0 0 10px var(--primary-glow);
+  }
+  
+  .text-glow-secondary {
+    text-shadow: 0 0 10px var(--secondary-glow);
+  }
+
+  /* Button Base */
+  .btn-base {
+    @apply relative overflow-hidden rounded-xl font-bold transition-all active:scale-95 disabled:opacity-50 disabled:pointer-events-none;
+  }
+}
+
+/* Custom Animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 15px var(--primary-glow); }
+  50% { box-shadow: 0 0 30px var(--primary-glow); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
