@@ -23,8 +23,6 @@ interface PlayerState {
   setAvatar: (avatar: string) => void;
   updateDailyStreak: () => void;
   setHasCompletedTutorial: (completed: boolean) => void;
-  controlMode: 'buttons' | 'tilt' | 'touch';
-  setControlMode: (mode: 'buttons' | 'tilt' | 'touch') => void;
   resetPlayer: () => void;
 }
 
@@ -42,8 +40,6 @@ export const usePlayerStore = create<PlayerState>()(
       dailyStreak: 0,
       lastLogin: null,
       hasCompletedTutorial: false,
-      controlMode: 'buttons',
-      setControlMode: (mode) => set({ controlMode: mode }),
       setGems: (gems) => set({ gems }),
       addGems: (amount) => set({ gems: get().gems + amount }),
       setElo: (elo) => set({ elo }),
@@ -100,8 +96,7 @@ export const usePlayerStore = create<PlayerState>()(
         bestScore: 0,
         dailyStreak: 0,
         lastLogin: null,
-        hasCompletedTutorial: false,
-        controlMode: 'buttons'
+        hasCompletedTutorial: false
       }),
     }),
     { name: "player-storage" }

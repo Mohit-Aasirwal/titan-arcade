@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Stage, Layer, Rect, Circle, Group, Path } from 'react-konva';
 import { useGameStore } from '@/store/gameStore';
+import { MobileControls } from './MobileControls';
 
 // Constants
 // Constants
@@ -271,6 +272,10 @@ export const GameCanvas = () => {
     >
         <div className="absolute inset-0 bg-[url('/bg-stars.png')] opacity-50" /> 
         <div className="absolute inset-0 bg-gradient-to-t from-purple-900/10 via-transparent to-blue-900/5 pointer-events-none" />
+        
+        <MobileControls onInput={useCallback((direction, active) => {
+             gameState.current.keys[direction] = active;
+        }, [])} />
         
         <Stage 
             width={dimensions.width} 
