@@ -81,6 +81,12 @@ export const GameCanvas = () => {
       if (!isClient) return;
       const stage = e.target.getStage();
       if (!stage) return;
+      
+      // Prevent scrolling/default behavior on mobile
+      if (e.evt && e.evt.preventDefault) {
+          e.evt.preventDefault();
+      }
+
       const pointer = stage.getPointerPosition();
       if (!pointer) return;
       
@@ -254,6 +260,7 @@ export const GameCanvas = () => {
     <div 
         className="w-full h-full overflow-hidden touch-none"
         style={{
+            touchAction: 'none', // Force touch action none
             backgroundColor: '#090A0F',
             backgroundImage: `
                 radial-gradient(circle at 50% 30%, rgba(76, 29, 149, 0.25) 0%, transparent 40%),
@@ -269,9 +276,8 @@ export const GameCanvas = () => {
             width={dimensions.width} 
             height={dimensions.height}
             startDragDistance={0}
-            onContentTouchStart={handleInput}
-            onContentTouchMove={handleInput}
-            onContentMouseMove={handleInput}
+            onContentPointerDown={handleInput}
+            onContentPointerMove={handleInput}
         >
             <Layer>
                 {/* Stars */}
