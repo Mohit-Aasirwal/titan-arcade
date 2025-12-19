@@ -33,10 +33,8 @@ export const GameHUD = ({ isPractice }: { isPractice: boolean }) => {
          <div className={`text-2xl font-bold font-mono ${timeRemaining < 10 ? 'text-red-500 animate-pulse' : 'text-white'}`}>
             {Math.floor(timeRemaining / 60)}:{(timeRemaining % 60).toString().padStart(2, '0')}
          </div>
-         <Button variant="glass" size="sm" onClick={pauseGame} className="w-10 h-10 p-0 rounded-full flex items-center justify-center">
          <Button variant="glass" size="sm" onClick={isPaused ? resumeGame : pauseGame} className="w-10 h-10 p-0 rounded-full flex items-center justify-center">
              {isPaused ? <div className="ml-1 w-0 h-0 border-t-8 border-t-transparent border-l-[12px] border-l-white border-b-8 border-b-transparent" /> : <Pause size={16} />}
-         </Button>
          </Button>
       </div>
 
