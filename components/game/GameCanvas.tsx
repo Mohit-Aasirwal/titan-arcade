@@ -234,11 +234,16 @@ export const GameCanvas = () => {
     <div 
         className="w-full h-full overflow-hidden touch-none"
         style={{
-            background: 'radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%)',
+            backgroundColor: '#090A0F',
+            backgroundImage: `
+                radial-gradient(circle at 50% 30%, rgba(76, 29, 149, 0.25) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 40%),
+                radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%)
+            `
         }}
     >
         <div className="absolute inset-0 bg-[url('/bg-stars.png')] opacity-50" /> {/* Fallback or texture if available, else just gradients */}
-        <div className="absolute inset-0 bg-gradient-to-t from-purple-900/20 via-transparent to-blue-900/10 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-purple-900/10 via-transparent to-blue-900/5 pointer-events-none" />
         
         <Stage 
             width={dimensions.width} 
