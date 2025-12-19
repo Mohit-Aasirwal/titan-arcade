@@ -43,6 +43,18 @@ export const GameCanvas = () => {
     });
   }, []);
 
+  const [stars, setStars] = useState<{x:number, y:number, radius:number, opacity:number}[]>([]);
+  
+  useEffect(() => {
+    if (dimensions.width === 0) return;
+    setStars([...Array(30)].map(() => ({
+        x: Math.random() * dimensions.width,
+        y: Math.random() * dimensions.height,
+        radius: Math.random() * 2,
+        opacity: 0.3
+    })));
+  }, [dimensions]);
+
   // Game State (Render)
   const [playerX, setPlayerX] = useState(200); 
   const [bullets, setBullets] = useState<GameObject[]>([]);
@@ -98,10 +110,13 @@ export const GameCanvas = () => {
     };
   }, []);
 
+  // Loop Ref to avoid recursion dependency
+  const loopRef = useRef<() => void>(() => {});
+
   const update = useCallback(() => {
     const state = gameState.current;
     if (!state.isPlaying || state.isPaused) {
-        requestRef.current = requestAnimationFrame(update);
+        requestRef.current = requestAnimationFrame(() => loopRef.current());
         return;
     }
 
@@ -122,6 +137,7 @@ export const GameCanvas = () => {
 
     // 3. Spawning
     if (frameCount.current % SPAWN_RATE === 0) {
+        // Use logic... 
         const size = 30 + Math.random() * 20;
         const variant = Math.random() < 0.33 ? '1' : Math.random() < 0.66 ? '2' : '3';
         state.enemies.push({
@@ -215,18 +231,22 @@ export const GameCanvas = () => {
     setBullets([...state.bullets]); // Create new ref to trigger render
     setEnemies([...state.enemies]);
 
-    requestRef.current = requestAnimationFrame(update);
+    requestRef.current = requestAnimationFrame(() => loopRef.current());
   }, [dimensions, addScore, loseLife, tickTimer]);
+
+  useEffect(() => {
+    loopRef.current = update;
+  }, [update]);
 
   useEffect(() => {
     // Start or restart the loop whenever playing state changes
     if (isPlaying && !isPaused) {
-       requestRef.current = requestAnimationFrame(update);
+       requestRef.current = requestAnimationFrame(() => loopRef.current());
     }
     return () => {
         if (requestRef.current) cancelAnimationFrame(requestRef.current);
     };
-  }, [isPlaying, isPaused, update]);
+  }, [isPlaying, isPaused]);
 
   if (!isClient) return <div className="bg-slate-900 w-full h-full" />;
 
@@ -242,7 +262,7 @@ export const GameCanvas = () => {
             `
         }}
     >
-        <div className="absolute inset-0 bg-[url('/bg-stars.png')] opacity-50" /> {/* Fallback or texture if available, else just gradients */}
+        <div className="absolute inset-0 bg-[url('/bg-stars.png')] opacity-50" /> 
         <div className="absolute inset-0 bg-gradient-to-t from-purple-900/10 via-transparent to-blue-900/5 pointer-events-none" />
         
         <Stage 
@@ -255,14 +275,14 @@ export const GameCanvas = () => {
         >
             <Layer>
                 {/* Stars */}
-                {[...Array(30)].map((_, i) => (
+                {stars.map((star, i) => (
                     <Circle 
                         key={i}
-                        x={Math.random() * dimensions.width}
-                        y={Math.random() * dimensions.height}
-                        radius={Math.random() * 2}
+                        x={star.x}
+                        y={star.y}
+                        radius={star.radius}
                         fill="white"
-                        opacity={0.3}
+                        opacity={star.opacity}
                     />
                 ))}
 

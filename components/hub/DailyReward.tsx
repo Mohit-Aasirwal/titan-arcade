@@ -1,37 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { usePlayerStore } from '@/store/playerStore';
-import { motion } from 'framer-motion';
 import { Gift, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 
 export const DailyReward = () => {
   const { dailyStreak, lastLogin, updateDailyStreak } = usePlayerStore();
-  const [canClaim, setCanClaim] = useState(false);
-
-  useEffect(() => {
+  // Derived state (no need for effect)
+  const canClaim = React.useMemo(() => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    if (!lastLogin) {
-      setCanClaim(true);
-      return;
-    }
+    if (!lastLogin) return true;
 
     const last = new Date(lastLogin);
     last.setHours(0, 0, 0, 0);
     
     // Check if Last Login was yesterday or before
-    // If today > last login date
-    if (today.getTime() > last.getTime()) {
-      setCanClaim(true);
-    } else {
-        setCanClaim(false);
-    }
+    return today.getTime() > last.getTime();
   }, [lastLogin]);
 
   const handleClaim = () => {
     updateDailyStreak();
-    setCanClaim(false);
   };
 
   return (

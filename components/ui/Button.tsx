@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils'; // Assuming cn utility exists, if not I'll cre
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'accent' | 'danger' | 'ghost' | 'glass';
-  size?: 'sm' | 'md' | 'lg' | 'xl';
+  size?: 'sm' | 'md' | 'lg' | 'xl' | 'icon';
   isLoading?: boolean;
 }
 
@@ -26,6 +26,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       md: "h-10 px-4 text-sm",
       lg: "h-12 px-6 text-base",
       xl: "h-14 px-8 text-lg w-full",
+      icon: "h-10 w-10 p-0 flex items-center justify-center",
     };
 
     return (
