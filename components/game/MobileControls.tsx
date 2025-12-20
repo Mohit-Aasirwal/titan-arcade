@@ -15,9 +15,8 @@ export const MobileControls: React.FC<MobileControlsProps> = ({ onInput }) => {
         if (mode !== 'tilt') return;
 
         const handleOrientation = (e: DeviceOrientationEvent) => {
-            const gamma = e.gamma || 0; // Left/Right tilt (-90 to 90)
+            const gamma = e.gamma || 0; 
             
-            // Deadzone of 5 degrees
             if (gamma < -15) {
                 onInput('left', true);
                 onInput('right', false);

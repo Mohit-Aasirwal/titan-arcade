@@ -19,25 +19,21 @@ export default function GamePage() {
 
   const { resetGame, startGame, gameStatus, endGame, score } = useGameStore();
   const { gems, addGems, hasCompletedTutorial, setHasCompletedTutorial, updateBestScore } = usePlayerStore();
-
-  /* 
-   * TUTORIAL LOGIC
-   * If user hasn't completed tutorial:
-   * 1. Force Phase = 'tutorial'
-   * 2. Show TutorialOverlay -> 'handling'
-   * 3. Start Practice Match -> 'playing'
-   * 4. End Match -> Update userStore -> Enable regular flow
-   */
-
   useEffect(() => {
     if (!hasCompletedTutorial) {
         setPhase('tutorial');
     }
   }, [hasCompletedTutorial]);
 
+  // Reset game state on mount to ensure clean slate
+  useEffect(() => {
+    resetGame();
+  }, [resetGame]);
+
   // Handle Match Results for Tutorial Completion
   useEffect(() => {
-    if (gameStatus === 'game_over' || gameStatus === 'victory') {
+    // Only trigger results if we were actually playing (prevents stale state issues)
+    if (phase === 'playing' && (gameStatus === 'game_over' || gameStatus === 'victory')) {
       const isTutorialMatch = !hasCompletedTutorial;
       setPhase('results');
       
@@ -54,7 +50,7 @@ export default function GamePage() {
          // ... existing win logic
       }
     }
-  }, [gameStatus, score, isPractice, hasCompletedTutorial, updateBestScore, setHasCompletedTutorial]);
+  }, [gameStatus, score, isPractice, hasCompletedTutorial, updateBestScore, setHasCompletedTutorial, phase]);
 
   const handleStartMatch = (practice: boolean, bet: number) => {
     // Block regular entry if tutorial isn't done (double safeguard)

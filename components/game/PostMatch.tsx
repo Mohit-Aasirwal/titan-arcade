@@ -20,11 +20,14 @@ export const PostMatch: React.FC<PostMatchProps> = ({ score, isPractice, bet, on
   const isWin = score > 500; 
   const winAmount = isWin ? (bet === 3 ? 5 : 10) : 0;
 
+  const awardedRef = React.useRef(false);
+
   useEffect(() => {
-     if (!isPractice && isWin) {
+     if (!awardedRef.current && !isPractice && isWin) {
          addGems(winAmount);
+         awardedRef.current = true;
      }
-  }, []);
+  }, [isPractice, isWin, addGems, winAmount]);
 
   return (
     <motion.div 
@@ -48,10 +51,12 @@ export const PostMatch: React.FC<PostMatchProps> = ({ score, isPractice, bet, on
                      <p className="text-xs text-slate-500 uppercase font-bold">Your Score</p>
                      <p className="text-3xl font-black text-white">{score.toLocaleString()}</p>
                  </div>
-                 <div className="text-right opacity-50">
-                     <p className="text-xs text-slate-500 uppercase font-bold">Opponent</p>
-                     <p className="text-2xl font-bold text-white">Pending...</p>
-                 </div>
+                 {!isPractice && (
+                     <div className="text-right opacity-50">
+                         <p className="text-xs text-slate-500 uppercase font-bold">Opponent</p>
+                         <p className="text-2xl font-bold text-white">Pending...</p>
+                     </div>
+                 )}
             </div>
 
             {/* Rewards */} 
