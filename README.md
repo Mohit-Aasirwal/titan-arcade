@@ -236,7 +236,7 @@ stateDiagram-v2
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-repo/titan-arcade.git
+git clone https://github.com/Mohit-Aasirwal/titan-arcade.git
 cd titan-arcade
 
 # Install dependencies
