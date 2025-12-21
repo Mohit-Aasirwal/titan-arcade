@@ -24,7 +24,7 @@ export const DailyReward = () => {
   };
 
   return (
-    <div className="glass-card w-full max-w-sm border-t-4 border-t-yellow-500 relative overflow-hidden">
+    <div className="glass-card w-full border-t-4 border-t-yellow-500 relative overflow-hidden">
       <div className="absolute top-0 right-0 p-4 opacity-10">
         <Gift size={80} />
       </div>
