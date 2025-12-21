@@ -34,7 +34,7 @@ export const DailyReward = () => {
           <Zap size={16} className="text-yellow-500" fill="currentColor" aria-hidden="true" />
           Daily Rewards
         </h3>
-        <span className="text-sm font-mono text-slate-400">Day {canClaim ? dailyStreak + 1 : dailyStreak}</span>
+        <span className="text-sm font-mono text-slate-300">Day {canClaim ? dailyStreak + 1 : dailyStreak}</span>
       </div>
 
       <div className="flex items-center justify-between mt-4">
@@ -42,7 +42,7 @@ export const DailyReward = () => {
            <div className="text-3xl font-black text-white text-glow">
              +{canClaim ? (dailyStreak + 1) * 5 : 5} <span className="text-sm text-yellow-500">GEM</span>
            </div>
-           <p className="text-xs text-slate-400 mt-1">
+           <p className="text-xs text-slate-300 mt-1">
              {canClaim ? "Ready to claim!" : "Come back tomorrow"}
            </p>
         </div>

@@ -24,7 +24,7 @@ export default function Home() {
             </div>
             <div>
                 <h2 className="font-bold text-sm leading-none">{username}</h2>
-                <span className="text-xs text-slate-400 font-mono">ELO {elo}</span>
+                <span className="text-xs text-slate-300 font-mono">ELO {elo}</span>
             </div>
         </div>
         <GemsDisplay amount={gems} />
@@ -40,7 +40,7 @@ export default function Home() {
 
         {/* Featured Game Tile (The MVP Game) */}
         <section className="mt-2 text-center">
-             <h3 className="text-left text-xs font-bold uppercase tracking-widest text-slate-500 mb-3 ml-1">Featured Game</h3>
+             <h3 className="text-left text-xs font-bold uppercase tracking-widest text-slate-400 mb-3 ml-1">Featured Game</h3>
              
              <div className="group relative w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl shadow-primary/20 border border-white/10 bg-slate-800">
                 {/* Image Placeholder / Gradient */}
@@ -71,13 +71,13 @@ export default function Home() {
             <Link href="/profile">
                 <div className="glass p-4 rounded-xl flex flex-col items-center justify-center gap-2 hover:bg-white/5 active:scale-95 transition-all cursor-pointer">
                     <User className="text-slate-400" aria-hidden="true" />
-                    <span className="text-xs font-bold text-slate-300">Profile</span>
+                    <span className="text-xs font-bold text-slate-200">Profile</span>
                 </div>
             </Link>
             <Link href="/leaderboard">
                  <div className="glass p-4 rounded-xl flex flex-col items-center justify-center gap-2 hover:bg-white/5 active:scale-95 transition-all cursor-pointer">
                         <Trophy className="text-slate-400" aria-hidden="true" />
-                        <span className="text-xs font-bold text-slate-300">Ranks</span>
+                        <span className="text-xs font-bold text-slate-200">Ranks</span>
                 </div>
             </Link>
         </div>
