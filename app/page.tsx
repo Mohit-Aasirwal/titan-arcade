@@ -20,7 +20,7 @@ export default function Home() {
       <header className="flex justify-between items-center py-4 relative z-10">
         <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-slate-700 rounded-full flex items-center justify-center border border-white/10 overflow-hidden">
-                <User size={24} className="text-slate-300"/>
+                <User size={24} className="text-slate-300" aria-hidden="true" />
             </div>
             <div>
                 <h2 className="font-bold text-sm leading-none">{username}</h2>
@@ -48,7 +48,7 @@ export default function Home() {
                 
                 {/* Game Art Elements (CSS only for speed) */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 border-4 border-blue-400 rounded-full shadow-[0_0_50px_var(--primary-glow)] flex items-center justify-center">
-                    <Rocket size={64} className="text-white drop-shadow-lg" />
+                    <Rocket size={64} className="text-white drop-shadow-lg" aria-hidden="true" />
                 </div>
 
                 {/* Content Overlay */}
@@ -58,7 +58,7 @@ export default function Home() {
                     
                     <Link href="/game" className="w-full">
                         <Button variant="primary" size="xl" className="w-full group-hover:bg-blue-400 transition-colors animate-pulse-glow">
-                           <PlayCircle size={24} className="mr-2" />
+                           <PlayCircle size={24} className="mr-2" aria-hidden="true" />
                            PLAY NOW
                         </Button>
                     </Link>
@@ -70,13 +70,13 @@ export default function Home() {
         <div className="grid grid-cols-2 gap-4 mt-auto pb-6">
             <Link href="/profile">
                 <div className="glass p-4 rounded-xl flex flex-col items-center justify-center gap-2 hover:bg-white/5 active:scale-95 transition-all cursor-pointer">
-                    <User className="text-slate-400" />
+                    <User className="text-slate-400" aria-hidden="true" />
                     <span className="text-xs font-bold text-slate-300">Profile</span>
                 </div>
             </Link>
             <Link href="/leaderboard">
                  <div className="glass p-4 rounded-xl flex flex-col items-center justify-center gap-2 hover:bg-white/5 active:scale-95 transition-all cursor-pointer">
-                        <Trophy className="text-slate-400" />
+                        <Trophy className="text-slate-400" aria-hidden="true" />
                         <span className="text-xs font-bold text-slate-300">Ranks</span>
                 </div>
             </Link>

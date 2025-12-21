@@ -12,6 +12,7 @@ export const MobileControls: React.FC<MobileControlsProps> = ({ onInput }) => {
             {/* Arrow Controls */}
             <div className="flex justify-between items-end w-full px-2 gap-4">
                 <button
+                    aria-label="Move left"
                     className="pointer-events-auto w-24 h-24 rounded-full bg-white/10 border-2 border-white/20 backdrop-blur-sm flex items-center justify-center active:bg-white/20 active:scale-95 transition-all shadow-lg shadow-black/20"
                     onPointerDown={() => onInput('left', true)}
                     onPointerUp={() => onInput('left', false)}
@@ -23,6 +24,7 @@ export const MobileControls: React.FC<MobileControlsProps> = ({ onInput }) => {
                 </button>
 
                 <button
+                    aria-label="Move right"
                     className="pointer-events-auto w-24 h-24 rounded-full bg-white/10 border-2 border-white/20 backdrop-blur-sm flex items-center justify-center active:bg-white/20 active:scale-95 transition-all shadow-lg shadow-black/20"
                     onPointerDown={() => onInput('right', true)}
                     onPointerUp={() => onInput('right', false)}

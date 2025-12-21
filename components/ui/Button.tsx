@@ -31,7 +31,6 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <button
-        role='div'
         ref={ref}
         className={cn(baseStyles, variants[variant], sizes[size], className)}
         disabled={isLoading || props.disabled}

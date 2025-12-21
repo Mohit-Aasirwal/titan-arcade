@@ -24,14 +24,14 @@ export const DailyReward = () => {
   };
 
   return (
-    <div className="glass-card w-full border-t-4 border-t-yellow-500 relative overflow-hidden">
+    <div className="glass-card w-full border-t-4 border-t-yellow-500 relative overflow-hidden" aria-labelledby="daily-reward-title">
       <div className="absolute top-0 right-0 p-4 opacity-10">
-        <Gift size={80} />
+        <Gift size={80} aria-hidden="true" />
       </div>
       
       <div className="flex items-center justify-between mb-2">
-        <h3 className="font-bold text-slate-200 flex items-center gap-2">
-          <Zap size={16} className="text-yellow-500" fill="currentColor" />
+        <h3 id="daily-reward-title" className="font-bold text-slate-200 flex items-center gap-2">
+          <Zap size={16} className="text-yellow-500" fill="currentColor" aria-hidden="true" />
           Daily Rewards
         </h3>
         <span className="text-sm font-mono text-slate-400">Day {canClaim ? dailyStreak + 1 : dailyStreak}</span>
