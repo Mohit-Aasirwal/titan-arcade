@@ -144,7 +144,6 @@ export const GameCanvas = () => {
 
     // 3. Spawning
     if (frameCount.current % SPAWN_RATE === 0) {
-        // Use logic... 
         const size = 30 + Math.random() * 20;
         const variant = Math.random() < 0.33 ? '1' : Math.random() < 0.66 ? '2' : '3';
         state.enemies.push({
