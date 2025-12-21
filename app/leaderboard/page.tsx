@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
 import { Home, User, Trophy, Users, ArrowLeft } from 'lucide-react';
-import { GameStorage } from '@/lib/storage';
 
 export default function LeaderboardPage() {
   const [activeTab, setActiveTab] = useState<'global' | 'friends'>('global');
@@ -20,7 +19,6 @@ export default function LeaderboardPage() {
             { id: '4', username: 'PixelPete', elo: 1280, avatar: '' },
             { id: '5', username: 'RetroRex', elo: 1100, avatar: '' },
         ];
-        // Combine with local player if needed, but for now just show mock
         setLeaderboard(mockGlobal);
     };
     loadData();
